@@ -11,6 +11,8 @@
     <AssemblyName>GrasshopperLive</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,25 +36,33 @@
       <HintPath>..\packages\EngineIoClientDotNet.0.9.22\lib\net45\EngineIoClientDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GH_IO">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\GH_IO.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Eto, Version=2.5.0.0, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.6.11.18348.17061\lib\net45\Eto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GH_IO, Version=6.11.18348.17060, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grasshopper.6.11.18348.17061\lib\net45\GH_IO.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="GH_Util">
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\GH_Util.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Grasshopper">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\Grasshopper.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Grasshopper, Version=6.11.18348.17060, Culture=neutral, PublicKeyToken=dda4f5ec2cd80803, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grasshopper.6.11.18348.17061\lib\net45\Grasshopper.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RhinoCommon">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Rhino 6\System\RhinoCommon.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Rhino.UI, Version=6.11.18348.17060, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.6.11.18348.17061\lib\net45\Rhino.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RhinoCommon, Version=6.11.18348.17060, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.6.11.18348.17061\lib\net45\RhinoCommon.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SocketIOClient, Version=0.6.26.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SocketIO4Net.Client.0.6.26\lib\net40\SocketIOClient.dll</HintPath>
@@ -109,6 +119,15 @@ IF NOT EXIST %25AppData%25\Grasshopper\Libraries\Live (
 copy $(TargetDir)*.* %25AppData%25\Grasshopper\Libraries\Live
 )</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\RhinoCommon.6.11.18348.17061\build\net45\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.6.11.18348.17061\build\net45\RhinoCommon.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\RhinoCommon.6.11.18348.17061\build\net45\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.6.11.18348.17061\build\net45\RhinoCommon.targets'))" />
+    <Error Condition="!Exists('..\packages\Grasshopper.6.11.18348.17061\build\net45\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.6.11.18348.17061\build\net45\Grasshopper.targets'))" />
+  </Target>
+  <Import Project="..\packages\Grasshopper.6.11.18348.17061\build\net45\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.6.11.18348.17061\build\net45\Grasshopper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
