@@ -22,10 +22,10 @@ namespace GrasshopperLive
     /// <summary>
     /// Class to deal with communication. Send/receive messages
     /// </summary>
-    public class GrasshopperLive
+    public class GrasshopperLive : IDisposable
     {
-        public static readonly string ConnectAddress = "http://localhost:3000";
-        //public static readonly string ConnectAddress = "https://gh-live.herokuapp.com";
+        //public static readonly string ConnectAddress = "http://localhost:3000";
+        public static readonly string ConnectAddress = "https://gh-live.herokuapp.com";
 
         public event EventHandler<GhLiveEventArgs> DataReceived;
 
@@ -126,6 +126,13 @@ namespace GrasshopperLive
             //socket.Connect();           
 
 
+        }
+
+        public void Dispose()
+        {
+            socket.Disconnect();
+            socket = null;
+            //bye..
         }
     }
 }
