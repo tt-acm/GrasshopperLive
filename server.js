@@ -10,10 +10,12 @@ app.get('/', function(req, res) {
 
 io.on('connection', function(socket) {
     console.log('a user connected');
-    io.emit('chat message', 'new user connected' + socket.id);
-    // socket.on('disconnect', function() {
-    //     console.log('user disconnected')
-    // });
+    io.emit('chat message', 'new user connected ' + socket.id);
+
+    socket.on('disconnect', function() {
+        console.log('user disconnected');
+        io.emit('chat message', 'user connected ' + socket.id);
+    });
 
     socket.on('chat message', function(msg) {
         // this send to everyone
