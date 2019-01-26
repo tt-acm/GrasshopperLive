@@ -14,7 +14,11 @@ namespace GrasshopperLive.Test
 
             ghlive.Test();
 
-            Console.ReadKey();
+            while (true)
+            {
+                string message = Console.ReadLine();
+                ghlive.SendChatMessage(message);
+            }
             
 
         }

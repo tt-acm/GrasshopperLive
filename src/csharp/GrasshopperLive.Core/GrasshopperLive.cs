@@ -30,15 +30,35 @@ namespace GrasshopperLive
 
         }
 
+        public void SendChatMessage(string message)
+        {
+            GhLiveMessage messageObj = new GhLiveMessage();
+            messageObj.Sender = _id;
+            messageObj.Message = message;
+
+            string stuff = Newtonsoft.Json.JsonConvert.SerializeObject(messageObj);
+
+            socket.Emit("chat message", stuff);
+        }
+
         Socket socket;
-    public void Test()
+
+
+        public class GhLiveMessage
+        {
+            public string Sender { get; set; }
+            public string Message { get; set; }
+        }
+
+        string _id;
+        public void Test()
         {
             socket = IO.Socket(ConnectAddress);
 
             socket.On(Socket.EVENT_CONNECT, () =>
             {
-
-                socket.Emit("chat message" ,"hi from C#");
+                _id = socket.Io().EngineSocket.Id;
+                //socket.Emit("chat message" , "hi from C#");
                 Console.WriteLine("Connected!");
 
             });
@@ -49,9 +69,20 @@ namespace GrasshopperLive
                 //socket.Disconnect();
             });
 
+            socket.On("chat message", (data) =>
+            {
+                GhLiveMessage incomingObj = Newtonsoft.Json.JsonConvert.DeserializeObject<GhLiveMessage>(data.ToString());
+
+                if (incomingObj.Sender != _id)
+                {
+                    Console.WriteLine(incomingObj.Message);
+                }
+
+                //socket.Disconnect();
+            });
             //socket.Connect();           
-            
-            
+
+
         }
     }
 }
