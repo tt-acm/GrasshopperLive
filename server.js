@@ -24,6 +24,13 @@ io.on('connection', function(socket) {
         console.log('message: ' + msg);
     });
 
+    socket.on('update', function(data) {
+        // this send to everyone
+        //io.emit('some event', { for: 'everyone' });
+        io.emit('update', data);
+        console.log('update: ' + data);
+    });
+
 });
 
 http.listen(port, function() {
