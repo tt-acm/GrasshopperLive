@@ -44,13 +44,14 @@ namespace GrasshopperLive
                 string newPart = "some data";
                 //Part newPart = new Part()
                 //{ PartNumber = "K4P2G324EC", Code = "DDR2", Level = 1 };
-
+                Console.WriteLine("Connected");
                 socket.Emit("partInfo", newPart);
             });
 
             // register for 'update' events - message is a json 'Part' object
             socket.On("update", (data) =>
             {
+                Console.WriteLine("Update");
                 //Console.WriteLine("recv [socket].[update] event");
                 //Console.WriteLine("  raw message:      {0}", data.RawMessage);
                 //Console.WriteLine("  string message:   {0}", data.MessageText);
@@ -70,20 +71,24 @@ namespace GrasshopperLive
         private void SocketError(object sender, ErrorEventArgs e)
         {
             //throw new NotImplementedException();
+            Console.WriteLine(nameof(SocketError));
         }
 
         private void SocketConnectionClosed(object sender, EventArgs e)
         {
             //throw new NotImplementedException();
+            Console.WriteLine(nameof(SocketConnectionClosed));
         }
 
         private void SocketMessage(object sender, MessageEventArgs e)
         {
+            Console.WriteLine(nameof(SocketMessage));
             //throw new NotImplementedException();
         }
 
         private void SocketOpened(object sender, EventArgs e)
         {
+            Console.WriteLine(nameof(SocketOpened));
             //throw new NotImplementedException();
         }
     }
