@@ -59,8 +59,10 @@
   <ItemGroup>
     <Compile Include="GhLiveEventArgs.cs" />
     <Compile Include="GhLiveMessage.cs" />
+    <Compile Include="GhLivePoint.cs" />
     <Compile Include="GrasshopperLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
