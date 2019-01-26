@@ -9,7 +9,7 @@ namespace GrasshopperLive
 {
     public class GH_JoinSession : GH_Component
     {
-        GrasshopperLive ghLive;
+        //private static GrasshopperLive ghLive;
         //internal static GH_JoinSession Application;
 
 
@@ -17,9 +17,10 @@ namespace GrasshopperLive
             "an existing GrasshopperLive session.", "Live", "Live")
         {
             //Application = this;
-            ghLive = new GrasshopperLive();
-            ghLive.DataReceived += GhLive_DataReceived;
-
+            //if (ghLive == null) {
+            //    ghLive = new GrasshopperLive();
+            //    ghLive.DataReceived += GhLive_DataReceived;
+            //}
         }
 
         private void GhLive_DataReceived(object sender, GhLiveEventArgs e)
@@ -40,27 +41,38 @@ namespace GrasshopperLive
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             //TODO:
-            pManager.AddTextParameter("Session ID", "sID", "Session ID", GH_ParamAccess.item, "");
-            pManager.AddTextParameter("Message", "M", "Message", GH_ParamAccess.item, "");
+            //pManager.AddTextParameter("Session ID", "sID", "Session ID", GH_ParamAccess.item, "");
+            //pManager.AddTextParameter("Message", "M", "Message", GH_ParamAccess.item, "");
 
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Log", "Log", "Log", GH_ParamAccess.list);
+            //pManager.AddTextParameter("Log", "Log", "Log", GH_ParamAccess.list);
             //pManager.AddTextParameter("Connection", "C", "True = Connection established | False = No Connection", GH_ParamAccess.item);
         }
 
         List<string> _messageLog = new List<string>();
 
+        public void SetupConnection()
+        {
+            GrasshopperLive ghLive = new GrasshopperLive();
+            //ghLive.DataReceived += GhLive_DataReceived;
+            ghLive.Connect();
+            once = true;
+        }
+
+        bool once = false;
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            if (!ghLive.Connected)
+            if (!once)
             {
-                ghLive.Connect();
+                Task.Run(() =>
+                {
+                    SetupConnection();
+                });
             }
-
-
+            
             /*
             string sesssionID = string.Empty;
             string message = string.Empty;
@@ -73,8 +85,8 @@ namespace GrasshopperLive
 
             // execute connection code
             */
-            DA.SetDataList(0, _messageLog);
-
+            //DA.SetDataList(0, _messageLog);
+            //this.Locked = true;
         }
 
     }

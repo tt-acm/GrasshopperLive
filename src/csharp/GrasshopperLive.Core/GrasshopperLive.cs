@@ -22,28 +22,37 @@ namespace GrasshopperLive
     /// <summary>
     /// Class to deal with communication. Send/receive messages
     /// </summary>
-    public class GrasshopperLive
+    public class GrasshopperLive : IDisposable
     {
-        public static readonly string ConnectAddress = "http://localhost:3000";
+        //public static readonly string ConnectAddress = "http://localhost:3000";
+        public static readonly string ConnectAddress = "https://gh-live.herokuapp.com";
 
         public event EventHandler<GhLiveEventArgs> DataReceived;
 
         protected virtual void OnMessageReceived(string message)
         {
-
-            GhLiveMessage incomingObj = Newtonsoft.Json.JsonConvert.DeserializeObject<GhLiveMessage>(message);
-
-            if (incomingObj.Sender != _id)
+            try
             {
-                GhLiveEventArgs e = new GhLiveEventArgs();
-                e.TheObject = incomingObj;
-                var handler = this.DataReceived;
 
-                if (handler != null)
+                GhLiveMessage incomingObj = Newtonsoft.Json.JsonConvert.DeserializeObject<GhLiveMessage>(message);
+
+                if (incomingObj.Sender != _id)
                 {
-                    handler(this, e);
+                    GhLiveEventArgs e = new GhLiveEventArgs();
+                    e.TheObject = incomingObj;
+                    var handler = this.DataReceived;
+
+                    if (handler != null)
+                    {
+                        handler(this, e);
+                    }
+                    //Console.WriteLine(incomingObj.Message);
                 }
-                //Console.WriteLine(incomingObj.Message);
+            }
+            catch (Exception)
+            {
+
+                //throw;
             }
         }
 
@@ -117,6 +126,13 @@ namespace GrasshopperLive
             //socket.Connect();           
 
 
+        }
+
+        public void Dispose()
+        {
+            socket.Disconnect();
+            socket = null;
+            //bye..
         }
     }
 }
