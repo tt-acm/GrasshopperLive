@@ -71,7 +71,8 @@ namespace GrasshopperLive
         private void SocketError(object sender, ErrorEventArgs e)
         {
             //throw new NotImplementedException();
-            Console.WriteLine(nameof(SocketError));
+            Console.WriteLine(string.Format("{0}: {1}:", nameof(SocketError),
+                e.Message));
         }
 
         private void SocketConnectionClosed(object sender, EventArgs e)
