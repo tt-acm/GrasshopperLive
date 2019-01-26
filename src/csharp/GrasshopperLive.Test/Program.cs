@@ -13,7 +13,7 @@ namespace GrasshopperLive.Test
             GrasshopperLive ghlive = new GrasshopperLive();
             ghlive.DataReceived += Ghlive_DataReceived;
 
-            ghlive.Test();
+            ghlive.Connect();
 
             while (true)
             {
