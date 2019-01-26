@@ -12,6 +12,9 @@ namespace GrasshopperLive
     /// </summary>
     public class GrasshopperLive
     {
+        public static readonly string ConnectAddress = "http://localhost:3000";
+
+
         public GrasshopperLive()
         {
 
@@ -27,9 +30,11 @@ namespace GrasshopperLive
 
         }
 
+        private Client socket;
+
         public void Test()
         {
-            var socket = new Client("http://127.0.0.1:3000/"); // url to nodejs 
+            socket = new Client("http://localhost:3000"); // url to nodejs 
             socket.Opened += SocketOpened;
             socket.Message += SocketMessage;
             socket.SocketConnectionClosed += SocketConnectionClosed;
@@ -37,15 +42,18 @@ namespace GrasshopperLive
 
 
             // register for 'connect' event with io server
+            //socket.Connect();
+            //return;
+
             socket.On("connect", (fn) =>
             {
 
                 // emit Json Serializable object, anonymous types, or strings
-                string newPart = "some data";
+                //string newPart = "some data";
                 //Part newPart = new Part()
                 //{ PartNumber = "K4P2G324EC", Code = "DDR2", Level = 1 };
                 Console.WriteLine("Connected");
-                socket.Emit("partInfo", newPart);
+                //socket.Emit("partInfo", newPart);
             });
 
             // register for 'update' events - message is a json 'Part' object
