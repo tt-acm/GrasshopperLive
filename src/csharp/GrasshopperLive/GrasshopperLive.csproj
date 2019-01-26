@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="GH_JoinSession.cs" />
     <Compile Include="GH_CreateSession.cs" />
+    <Compile Include="GrasshopperLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
