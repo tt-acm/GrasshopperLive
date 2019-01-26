@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrasshopperLive", "GrasshopperLive\GrasshopperLive.csproj", "{4B4B59F0-FD3C-41D6-93A7-3C976252EDC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrasshopperLive.Core", "GrasshopperLive.Core\GrasshopperLive.Core.csproj", "{9A65BFE5-B502-418D-B875-D0B58A2E0E59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrasshopperLive.Test", "GrasshopperLive.Test\GrasshopperLive.Test.csproj", "{EE5F188F-BDCD-4C6F-95EE-4B7C7D8B2103}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4B4B59F0-FD3C-41D6-93A7-3C976252EDC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B4B59F0-FD3C-41D6-93A7-3C976252EDC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B4B59F0-FD3C-41D6-93A7-3C976252EDC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A65BFE5-B502-418D-B875-D0B58A2E0E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A65BFE5-B502-418D-B875-D0B58A2E0E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A65BFE5-B502-418D-B875-D0B58A2E0E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A65BFE5-B502-418D-B875-D0B58A2E0E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE5F188F-BDCD-4C6F-95EE-4B7C7D8B2103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE5F188F-BDCD-4C6F-95EE-4B7C7D8B2103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE5F188F-BDCD-4C6F-95EE-4B7C7D8B2103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE5F188F-BDCD-4C6F-95EE-4B7C7D8B2103}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
