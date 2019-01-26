@@ -11,6 +11,7 @@ namespace GrasshopperLive.Test
         static void Main(string[] args)
         {
             GrasshopperLive ghlive = new GrasshopperLive();
+            ghlive.DataReceived += Ghlive_DataReceived;
 
             ghlive.Test();
 
@@ -21,6 +22,11 @@ namespace GrasshopperLive.Test
             }
             
 
+        }
+
+        private static void Ghlive_DataReceived(object sender, GhLiveEventArgs e)
+        {
+            Console.WriteLine(e.TheObject.Message);
         }
     }
 }
