@@ -9,7 +9,7 @@ namespace GrasshopperLive
     public enum UpdateType
     {
         Add = 0,
-        Update = 1,
+        Move = 1,
         Delete = 2
     }
 }

@@ -7,25 +7,13 @@ using System.Threading.Tasks;
 
 namespace GrasshopperLive
 {
-    public class GhLiveEventArgs : EventArgs
-    {
-        public GhLiveMessage TheObject { get; set; }
-        //public 
-    }
-
-    public class GhLiveMessage
-    {
-        public string Sender { get; set; }
-        public string Message { get; set; }
-    }
-
     /// <summary>
     /// Class to deal with communication. Send/receive messages
     /// </summary>
     public class GrasshopperLive : IDisposable
     {
-        //public static readonly string ConnectAddress = "http://localhost:3000";
-        public static readonly string ConnectAddress = "https://gh-live.herokuapp.com";
+        public static readonly string ConnectAddress = "http://localhost:3000";
+        //public static readonly string ConnectAddress = "https://gh-live.herokuapp.com";
 
         public event EventHandler<GhLiveEventArgs> DataReceived;
 
@@ -33,7 +21,6 @@ namespace GrasshopperLive
         {
             try
             {
-
                 GhLiveMessage incomingObj = Newtonsoft.Json.JsonConvert.DeserializeObject<GhLiveMessage>(message);
 
                 if (incomingObj.Sender != _id)
@@ -56,20 +43,37 @@ namespace GrasshopperLive
             }
         }
 
-
-        public GrasshopperLive()
+        public void SendDeleteUpdateMessage(Guid customId)
         {
+            SendUpdateMessage(Guid.Empty, customId, null, UpdateType.Delete);
+        }
+
+        public void SendMoveUpdateMessage(Guid customId, GhLivePoint position)
+        {
+            SendUpdateMessage(Guid.Empty, customId, position, UpdateType.Move);
+        }
+
+        public void SendAddUpdateMessage(Guid componentId, Guid customId, GhLivePoint position)
+        {
+
+            SendUpdateMessage(componentId, customId, position, UpdateType.Add);
 
         }
 
-        public void CreateSession()
+        public void SendUpdateMessage(Guid componentId, Guid customId, GhLivePoint position, UpdateType type)
         {
 
-        }
+            GhLiveMessage messageObj = new GhLiveMessage();
+            messageObj.ComponentId = componentId;
+            messageObj.CustomId = customId;
+            messageObj.Point = position;
+            messageObj.UpdateType = type;
+            messageObj.Sender = _id;
 
-        public void JoinSession()
-        {
+            string stuff = Newtonsoft.Json.JsonConvert.SerializeObject(messageObj);
 
+            socket.Emit("update", stuff);
+            
         }
 
         public void SendChatMessage(string message)

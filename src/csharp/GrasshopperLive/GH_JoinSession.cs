@@ -25,6 +25,7 @@ namespace GrasshopperLive
 
         private void GhLive_DataReceived(object sender, GhLiveEventArgs e)
         {
+
             _messageLog.Add(e.TheObject.Message);
             //Grasshopper.Instances.DocumentEditor. //BeginInvoke(new Action(() => { GH_JoinSession.Application.ExpireSolution(true); }));
             //GH_JoinSession.Application.ExpireSolution(true);
