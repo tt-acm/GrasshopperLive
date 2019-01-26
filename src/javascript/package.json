@@ -2,6 +2,8 @@
     "name": "grasshopper_live",
     "version": "0.0.1",
     "description": "Collaborative parametric modelling in Grashhopper",
+    "main": "server.js",
+    "start": "node server.js",
     "dependencies": {
         "express": "^4.15.2",
         "socket.io": "^2.2.0"
