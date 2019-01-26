@@ -25,17 +25,29 @@ namespace GrasshopperLive
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-
+            pManager.AddTextParameter("Session ID", "sID", "Session ID", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-
+            pManager.AddTextParameter("Connection", "C", "True = Connection established | False = No Connection", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            string sesssionID = string.Empty;
+            string message = string.Empty;
 
+            if (!DA.GetData(0, ref sesssionID)) {
+                message = "Could not read session ID";
+                DA.SetData(0, message);
+                ExpireSolution(false);
+            }
+
+
+            // execute connection code
+
+            DA.SetData(0, message);
         }
     }
 }
