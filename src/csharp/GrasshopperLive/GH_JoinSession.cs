@@ -54,20 +54,25 @@ namespace GrasshopperLive
 
         List<string> _messageLog = new List<string>();
 
+        public void SetupConnection()
+        {
+            GrasshopperLive ghLive = new GrasshopperLive();
+            //ghLive.DataReceived += GhLive_DataReceived;
+            ghLive.Connect();
+            once = true;
+        }
+
         bool once = false;
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             if (!once)
             {
-                GrasshopperLive ghLive = new GrasshopperLive();
-                ghLive.DataReceived += GhLive_DataReceived;
-                ghLive.Connect();
-                once = true;
+                Task.Run(() =>
+                {
+                    SetupConnection();
+                });
             }
             
-           
-
-
             /*
             string sesssionID = string.Empty;
             string message = string.Empty;
