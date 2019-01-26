@@ -41,14 +41,14 @@ namespace GrasshopperLive
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             //TODO:
-            pManager.AddTextParameter("Session ID", "sID", "Session ID", GH_ParamAccess.item, "");
-            pManager.AddTextParameter("Message", "M", "Message", GH_ParamAccess.item, "");
+            //pManager.AddTextParameter("Session ID", "sID", "Session ID", GH_ParamAccess.item, "");
+            //pManager.AddTextParameter("Message", "M", "Message", GH_ParamAccess.item, "");
 
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Log", "Log", "Log", GH_ParamAccess.list);
+            //pManager.AddTextParameter("Log", "Log", "Log", GH_ParamAccess.list);
             //pManager.AddTextParameter("Connection", "C", "True = Connection established | False = No Connection", GH_ParamAccess.item);
         }
 
@@ -85,7 +85,7 @@ namespace GrasshopperLive
 
             // execute connection code
             */
-            DA.SetDataList(0, _messageLog);
+            //DA.SetDataList(0, _messageLog);
             //this.Locked = true;
         }
 
