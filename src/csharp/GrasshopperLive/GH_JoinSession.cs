@@ -9,7 +9,7 @@ namespace GrasshopperLive
 {
     public class GH_JoinSession : GH_Component
     {
-        GrasshopperLive ghLive;
+        //private static GrasshopperLive ghLive;
         //internal static GH_JoinSession Application;
 
 
@@ -17,9 +17,10 @@ namespace GrasshopperLive
             "an existing GrasshopperLive session.", "Live", "Live")
         {
             //Application = this;
-            ghLive = new GrasshopperLive();
-            ghLive.DataReceived += GhLive_DataReceived;
-
+            //if (ghLive == null) {
+            //    ghLive = new GrasshopperLive();
+            //    ghLive.DataReceived += GhLive_DataReceived;
+            //}
         }
 
         private void GhLive_DataReceived(object sender, GhLiveEventArgs e)
@@ -53,12 +54,18 @@ namespace GrasshopperLive
 
         List<string> _messageLog = new List<string>();
 
+        bool once = false;
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            if (!ghLive.Connected)
+            if (!once)
             {
+                GrasshopperLive ghLive = new GrasshopperLive();
+                ghLive.DataReceived += GhLive_DataReceived;
                 ghLive.Connect();
+                once = true;
             }
+            
+           
 
 
             /*
@@ -74,7 +81,7 @@ namespace GrasshopperLive
             // execute connection code
             */
             DA.SetDataList(0, _messageLog);
-
+            //this.Locked = true;
         }
 
     }
