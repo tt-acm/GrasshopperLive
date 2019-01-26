@@ -10,13 +10,13 @@ namespace GrasshopperLive
     public class GH_JoinSession : GH_Component
     {
         GrasshopperLive ghLive;
-        internal static GH_JoinSession Application;
+        //internal static GH_JoinSession Application;
 
 
         public GH_JoinSession() : base("Join Session", "JoinSession", "Join " +
             "an existing GrasshopperLive session.", "Live", "Live")
         {
-            Application = this;
+            //Application = this;
             ghLive = new GrasshopperLive();
             ghLive.DataReceived += GhLive_DataReceived;
 
@@ -26,7 +26,7 @@ namespace GrasshopperLive
         {
             _messageLog.Add(e.TheObject.Message);
             //Grasshopper.Instances.DocumentEditor. //BeginInvoke(new Action(() => { GH_JoinSession.Application.ExpireSolution(true); }));
-            GH_JoinSession.Application.ExpireSolution(true);
+            //GH_JoinSession.Application.ExpireSolution(true);
         }
 
         public override Guid ComponentGuid
