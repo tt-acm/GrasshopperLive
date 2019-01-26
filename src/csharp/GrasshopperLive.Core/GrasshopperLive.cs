@@ -12,8 +12,8 @@ namespace GrasshopperLive
     /// </summary>
     public class GrasshopperLive : IDisposable
     {
-        public static readonly string ConnectAddress = "http://localhost:3000";
-        //public static readonly string ConnectAddress = "https://gh-live.herokuapp.com";
+        //public static readonly string ConnectAddress = "http://localhost:3000";
+        public static readonly string ConnectAddress = "https://gh-live.herokuapp.com";
 
         public event EventHandler<GhLiveEventArgs> DataReceived;
 
