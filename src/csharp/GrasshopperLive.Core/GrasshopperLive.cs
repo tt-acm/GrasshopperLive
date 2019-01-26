@@ -17,6 +17,14 @@ namespace GrasshopperLive
 
         public event EventHandler<GhLiveEventArgs> DataReceived;
 
+        public string SocketId
+        {
+            get
+            {
+                return socket.Io().EngineSocket.Id;
+            }
+        }
+
         protected virtual void OnMessageReceived(string message)
         {
             try
