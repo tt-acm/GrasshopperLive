@@ -77,16 +77,22 @@ namespace GrasshopperLive
         Socket socket;
 
         string _id;
-        public void Test()
+
+        public bool Connected
+        {
+            get; private set;
+        }
+
+        public void Connect()
         {
             socket = IO.Socket(ConnectAddress);
+            this.Connected = true;
 
             socket.On(Socket.EVENT_CONNECT, () =>
             {
                 _id = socket.Io().EngineSocket.Id;
                 //socket.Emit("chat message" , "hi from C#");
                 Console.WriteLine("Connected!");
-
             });
 
             socket.On("hi", (data) =>

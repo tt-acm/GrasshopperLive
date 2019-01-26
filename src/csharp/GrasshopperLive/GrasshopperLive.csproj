@@ -83,7 +83,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GrasshopperLive.Core\GrasshopperLive.Core.csproj">
+      <Project>{9a65bfe5-b502-418d-b875-d0b58a2e0e59}</Project>
+      <Name>GrasshopperLive.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
