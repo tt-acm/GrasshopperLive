@@ -53,26 +53,26 @@ namespace GrasshopperLive
 
         public void SendDeleteUpdateMessage(Guid customId)
         {
-            SendUpdateMessage(Guid.Empty, customId, null, UpdateType.Delete);
+            SendUpdateMessage(string.Empty, customId, null, UpdateType.Delete);
         }
 
         public void SendMoveUpdateMessage(Guid customId, GhLivePoint position)
         {
-            SendUpdateMessage(Guid.Empty, customId, position, UpdateType.Move);
+            SendUpdateMessage(string.Empty, customId, position, UpdateType.Move);
         }
 
-        public void SendAddUpdateMessage(Guid componentId, Guid customId, GhLivePoint position)
+        public void SendAddUpdateMessage(string compType, Guid customId, GhLivePoint position)
         {
 
-            SendUpdateMessage(componentId, customId, position, UpdateType.Add);
+            SendUpdateMessage(compType, customId, position, UpdateType.Add);
 
         }
 
-        public void SendUpdateMessage(Guid componentId, Guid customId, GhLivePoint position, UpdateType type)
+        public void SendUpdateMessage(string compType, Guid customId, GhLivePoint position, UpdateType type)
         {
 
             GhLiveMessage messageObj = new GhLiveMessage();
-            messageObj.ComponentId = componentId;
+            messageObj.Type = compType;
             messageObj.CustomId = customId;
             messageObj.Point = position;
             messageObj.UpdateType = type;

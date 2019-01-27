@@ -19,7 +19,7 @@ namespace GrasshopperLive
         /// <summary>
         /// Corresponds to the CLASS (not the instance!)
         /// </summary>
-        public Guid ComponentId { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// Defines: 1. added location or updated location
