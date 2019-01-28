@@ -10,7 +10,7 @@ namespace GrasshopperLive.Test
     {
         static void Main(string[] args)
         {
-            GrasshopperLive ghlive = new GrasshopperLive();
+            GrasshopperLive ghlive = GrasshopperLive.Instance;
             ghlive.DataReceived += Ghlive_DataReceived;
 
             ghlive.Connect();

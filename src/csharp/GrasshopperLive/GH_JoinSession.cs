@@ -11,7 +11,7 @@ namespace GrasshopperLive
     {
         //private static GrasshopperLive ghLive;
         //internal static GH_JoinSession Application;
-
+        GrasshopperLive ghLive;
 
         public GH_JoinSession() : base("Join Session", "JoinSession", "Join " +
             "an existing GrasshopperLive session.", "Live", "Live")
@@ -21,6 +21,7 @@ namespace GrasshopperLive
             //    ghLive = new GrasshopperLive();
             //    ghLive.DataReceived += GhLive_DataReceived;
             //}
+            ghLive = GrasshopperLive.Instance;
         }
 
         private void GhLive_DataReceived(object sender, GhLiveEventArgs e)
@@ -44,12 +45,13 @@ namespace GrasshopperLive
             //TODO:
             //pManager.AddTextParameter("Session ID", "sID", "Session ID", GH_ParamAccess.item, "");
             //pManager.AddTextParameter("Message", "M", "Message", GH_ParamAccess.item, "");
+            pManager.AddBooleanParameter("Connect", "C", "True to connect.", GH_ParamAccess.item);
 
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            //pManager.AddTextParameter("Log", "Log", "Log", GH_ParamAccess.list);
+            pManager.AddTextParameter("Status", "S", "Status of connection.", GH_ParamAccess.item);
             //pManager.AddTextParameter("Connection", "C", "True = Connection established | False = No Connection", GH_ParamAccess.item);
         }
 
@@ -57,21 +59,22 @@ namespace GrasshopperLive
 
         public void SetupConnection()
         {
-            GrasshopperLive ghLive = new GrasshopperLive();
-            //ghLive.DataReceived += GhLive_DataReceived;
+            ghLive.DataReceived += GhLive_DataReceived;
             ghLive.Connect();
-            once = true;
         }
 
-        bool once = false;
+        //bool once = false;
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            if (!once)
+            bool connect = false;
+            if (!DA.GetData(0, ref connect))
             {
-                Task.Run(() =>
-                {
-                    SetupConnection();
-                });
+                //ExpireSolution(false);
+            }
+
+            if (connect)
+            {
+                SetupConnection();
             }
             
             /*
