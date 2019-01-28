@@ -25,5 +25,7 @@ The repo consists of mainly two parts: A node application running the server (ja
 ## Demo
 ![Demo](/Videos/hack_demo.gif)
 
+_Changes made to the Grasshopper document on the right laptop is reflected (real-time) on the left laptop._
+
 ## License
 TODO
