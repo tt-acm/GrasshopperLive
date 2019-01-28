@@ -3,7 +3,7 @@ _Real-time collaborative visual scripting_
 
 ![Grasshopper](/Videos/GrasshopperLiveAnimationLogo.gif)
 
-Inspired by the collaborative nature of web applications like [Google docs](https://www.edu.uwo.ca/ISC2/technology/img/google.gif) and Google sheets, _Grasshopper Live_ is a system to synchronize [Grasshopper](https://www.grasshopper3d.com/) definitions in real-time, allowing multiple users to modify the same file from different environments. As a user, you simply checkout the latest version of your definition, activate Grasshopper live together with your friends, and you are then able to see eachothers changes to the document (like adding/deleting/moving components).
+Inspired by the collaborative nature of web applications like [Google docs](https://www.edu.uwo.ca/ISC2/technology/img/google.gif) and Google sheets, _Grasshopper Live_ is a system to synchronize [Grasshopper](https://www.grasshopper3d.com/) definitions in real-time, allowing multiple users to modify the same file from different environments. As a user, you simply checkout the latest version of your definition and activate _Grasshopper Live_ together with your friends. You are then able to see each others changes to the document in real-time.
 
 ## Context
 _Grasshopper Live_ was developed from scratch under 24 intense hours at the [AEC Hackathon](http://aechackathon.com) January 2019, in Copenhagen, Denmark. Hack team consisted of:
