@@ -28,4 +28,4 @@ The repo consists of mainly two parts: A node application running the server (ja
 _Changes made to the Grasshopper document on the right laptop is reflected (real-time) on the left laptop._
 
 ## License
-TODO
+[MIT](/LICENSE)
