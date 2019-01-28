@@ -23,7 +23,7 @@ The repo consists of mainly two parts: A node application running the server (ja
 - Resthopper/compute and viz in browser.
 
 ## Demo
-TODO
+![Demo](/Videos/hack_demo.gif)
 
 ## License
 TODO
